@@ -26,9 +26,9 @@ jobs:
       run: |
         docker build -t hyisheng/rubychats-f .
 
-    - name: Expose port 8000 and run Docker container
+    - name: Expose port 8080 and run Docker container
       run: |
-        docker run -p 8080:8080 -d hyisheng/jadepanel-antdesign
+        docker run -p 8080:8080 -d hyisheng/rubychats-f
 
     - name: Push to Docker Hub
       run: |
