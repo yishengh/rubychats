@@ -7,6 +7,7 @@ let closeCallBack = null;
 let connect = (wsurl, accessToken) => {
 	try {
 		if (isConnect) {
+			
 			return;
 		}
 		console.log("Connecting to WebSocket");
@@ -58,6 +59,7 @@ let connect = (wsurl, accessToken) => {
 
 // Define the reconnect function
 let reconnect = (wsurl, accessToken) => {
+	console.log('WebSocket connection opened:', websock.url);
 	console.log("Attempting to reconnect");
 	if (isConnect) {
 		// If already connected, no need to reconnect
