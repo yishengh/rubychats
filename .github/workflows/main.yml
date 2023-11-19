@@ -1,0 +1,37 @@
+name: Deploy to Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Build Docker image
+      run: |
+        docker build -t hyisheng/rubychats-f .
+
+    - name: Expose port 8000 and run Docker container
+      run: |
+        docker run -p 8080:8080 -d hyisheng/jadepanel-antdesign
+
+    - name: Push to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker tag hyisheng/rubychats-f hyisheng/rubychats-f:latest
+        docker push hyisheng/rubychats-f:latest
