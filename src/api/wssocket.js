@@ -5,6 +5,7 @@ let messageCallBack = null;
 let closeCallBack = null;
 
 let connect = (wsurl, accessToken) => {
+	console.log(wsurl);
 	try {
 		if (isConnect) {
 			return;
@@ -81,6 +82,7 @@ let heartCheck = {
 	start: function () {
 		if (isConnect) {
 			console.log('Sending WebSocket heartbeat');
+			console.log('WebSocket connection opened:', websock.url);
 			let heartBeat = {
 				cmd: 1,
 				data: {}
