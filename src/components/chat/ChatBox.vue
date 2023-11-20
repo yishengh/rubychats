@@ -514,18 +514,18 @@ export default {
 
     },
     deleteMessage(msgInfo) {
-      this.$confirm('确认删除消息?', '删除消息', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Are you sure you want to delete this message?', 'Delete Message', {
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         this.$store.commit("deleteMessage", msgInfo);
       });
     },
     recallMessage(msgInfo) {
-      this.$confirm('确认撤回消息?', '撤回消息', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm('Are you sure you want to recall this message?', 'Recall Message', {
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         let url = `/message/${this.chat.type.toLowerCase()}/recall/${msgInfo.id}`
@@ -533,15 +533,16 @@ export default {
           url: url,
           method: 'delete'
         }).then(() => {
-          this.$message.success("消息已撤回");
+          this.$message.success("Message has been recalled");
           msgInfo = JSON.parse(JSON.stringify(msgInfo));
           msgInfo.type = 10;
-          msgInfo.content = '你撤回了一条消息';
+          msgInfo.content = 'You recalled a message';
           msgInfo.status = this.$enums.MESSAGE_STATUS.RECALL;
           this.$store.commit("insertMessage", msgInfo);
         })
       });
     },
+
     readedMessage() {
       if(this.chat.unreadCount==0){
         return;
