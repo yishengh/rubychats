@@ -197,6 +197,29 @@ export default {
 
       .friend-list-search {
         flex: 1;
+
+        .el-input {
+          width: 100%;
+
+          input {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            background-color: #f5f5f5;
+            color: #333;
+          }
+
+          .el-input-group__append {
+            .el-button {
+              transition: transform 0.3s ease;
+              background-color: #ff4d6e;
+              color: #fff;
+              &:hover {
+                background-color: #ff334f;
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
       }
     }
 

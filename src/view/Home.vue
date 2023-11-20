@@ -10,7 +10,7 @@
         ></head-image>
       </div>
 
-      <el-menu background-color="#333333" text-color="#ddd" style="margin-top: 30px;">
+      <el-menu>
         <el-menu-item title="Chat">
           <router-link :to="'/home/chat'">
             <span class="el-icon-chat-dot-round"></span>
@@ -351,39 +351,49 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// Define Ruby Gem color style
+$ruby-red-base: #9b111e; // Ruby Red
+$ruby-red-light: lighten($ruby-red-base, 15%); // Light Ruby Red
+$cartoon-yellow: #ffd700; // Cartoon-style yellow for highlights
+$ruby-text-color: #fff; // Text color in Ruby Gem style
 
 .navi-bar {
-  background: #333333;
+  background: $ruby-red-base;
   padding: 10px;
   padding-top: 50px;
 
   .el-menu {
     border: none;
     flex: 1;
+    background-color: $ruby-red-base;
+    margin-top: 30px;
 
     .el-menu-item {
       margin: 25px 0;
-
-      .router-link-exact-active span {
-        color: white !important;
+      transition: transform 0.3s ease;
+      color: $ruby-red-light !important;
+      background-color: $ruby-red-base;
+      &:hover {
+        transform: scale(2.0);
       }
 
       span {
         font-size: 24px !important;
-        color: #aaaaaa;
+        color: $ruby-text-color;
 
         &:hover {
-          color: white !important;
+          color: $ruby-red-light !important;
         }
       }
 
       .unread-text {
         position: absolute;
         line-height: 20px;
-        background-color: #f56c6c;
+        background-color: $cartoon-yellow;
+        color: $ruby-red-base;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
         left: 36px;
         top: 7px;
-        color: white;
         border-radius: 30px;
         padding: 0 5px;
         font-size: 10px;
@@ -398,13 +408,14 @@ export default {
     position: absolute;
     width: 60px;
     bottom: 40px;
-    color: #aaaaaa;
+    color: $ruby-text-color;
     font-size: 24px;
     text-align: center;
     cursor: pointer;
-
+    transition: transform 0.3s ease;
     &:hover {
-      color: white !important;
+      color: $ruby-red-light !important;
+      transform: scale(2.0);
     }
   }
 }
@@ -414,5 +425,12 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
+}
+
+.head-image {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 </style>

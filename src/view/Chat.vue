@@ -2,8 +2,8 @@
   <el-container class="chat-page">
     <el-aside width="260px" class="chat-list-box">
       <div class="chat-list-header">
-        <el-input width="200px" placeholder="Search" v-model="searchText">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input width="200px" placeholder="Search" v-model="searchText" class="ruby-input">
+          <el-button slot="append" icon="el-icon-search" class="ruby-button"></el-button>
         </el-input>
       </div>
       <div class="chat-list-loading" v-if="loading" v-loading="true" element-loading-text="Receiving messages..."
@@ -14,12 +14,12 @@
         <div v-for="(chat, index) in chatStore.chats" :key="index">
           <chat-item v-show="chat.showName.startsWith(searchText)" :chat="chat" :index="index"
                      @click.native="onActiveItem(index)" @delete="onDelItem(index)" @top="onTop(index)"
-                     :active="index === chatStore.activeIndex"></chat-item>
+                     :active="index === chatStore.activeIndex" class="ruby-chat-item"></chat-item>
         </div>
       </el-scrollbar>
     </el-aside>
     <el-container class="chat-box">
-      <chat-box v-show="activeChat.targetId > 0" :chat="activeChat"></chat-box>
+      <chat-box v-show="activeChat.targetId > 0" :chat="activeChat" class="ruby-chat-box"></chat-box>
     </el-container>
   </el-container>
 </template>
@@ -84,14 +84,34 @@ export default {
   .chat-list-box {
     display: flex;
     flex-direction: column;
-    border: #dddddd solid 1px;
+    border: #ddd solid 1px;
     background: white;
-    width: 3rem;
+    width: 260px;
 
     .chat-list-header {
-      padding: 5px;
-      background-color: white;
-      line-height: 50px;
+      padding: 10px;
+      background-color: #fff;
+
+      .ruby-input {
+        border-radius: 15px;
+        input {
+          border: 1px solid #ddd;
+          border-radius: 15px;
+          background-color: #f5f5f5;
+          color: #333;
+        }
+      }
+
+      .ruby-button {
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+        background-color: #ff334f;
+        color: #fff;
+        //margin-left: -1px; /* Adjust the position of the button to align with the input */
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
     }
 
     .chat-list-loading {
@@ -106,6 +126,14 @@ export default {
     .chat-list-items {
       flex: 1;
     }
+
+    .ruby-chat-item {
+      // Add styles specific to the chat item component, if needed
+    }
+  }
+
+  .chat-box {
+    // Add styles specific to the chat box component, if needed
   }
 }
 </style>

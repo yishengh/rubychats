@@ -3,12 +3,22 @@
     <el-aside width="260px" class="group-list-box">
       <div class="group-list-header">
         <div class="group-list-search">
-          <el-input width="200px" placeholder="Search group chat" v-model="searchText">
-            <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-input
+              width="200px"
+              placeholder="Search group chat"
+              v-model="searchText"
+              class="ruby-input"
+          >
+            <el-button slot="append" icon="el-icon-search" class="ruby-button"></el-button>
           </el-input>
         </div>
-        <el-button plain icon="el-icon-plus" style="border: none; padding: 12px; font-size: 20px;color: black;"
-                   title="Create group chat" @click="onCreateGroup()"></el-button>
+        <el-button
+            plain
+            icon="el-icon-plus"
+            style="border: none; padding: 12px; font-size: 20px;color: black;"
+            title="Create group chat"
+            @click="onCreateGroup()"
+        ></el-button>
       </div>
       <el-scrollbar class="group-list-items">
         <div v-for="(group,index) in groupStore.groups" :key="index">
@@ -296,6 +306,36 @@ export default {
 
       .group-list-search {
         flex: 1;
+        .ruby-input {
+          border-radius: 15px;
+
+          // Adjust the input box and button colors
+          input {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            background-color: #f5f5f5;
+            color: #333;
+          }
+
+          .el-input-group__append {
+            .ruby-button {
+              transition: transform 0.3s ease;
+              background-color: #ff4d6e;
+              color: #fff;
+              &:hover {
+                background-color: #ff334f;
+                transform: scale(1.1);
+              }
+            }
+          }
+          .ruby-button-add {
+            transition: transform 0.3s ease;
+            color: #fff;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
       }
     }
 
